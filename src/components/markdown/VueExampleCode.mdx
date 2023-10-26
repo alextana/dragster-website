@@ -1,0 +1,70 @@
+---
+layout: ../../layouts/Layout.astro
+---
+
+```vue
+<template>
+  <div>
+    <div class="grid grid-cols-1 place-content-center w-full">
+      <div class="lists w-full grid grid-cols-1 lg:grid-cols-2 gap-3 mt-8">
+        <ItemList v-for="list in lists" :items="list" />
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { useDragster } from '@alextana/dragster/vue'
+import ItemList from './ItemList.vue'
+
+import { reactive } from 'vue'
+
+// First array
+const array1 = reactive([
+  { id: 4453, name: 'Potato 🥔' },
+  { id: 456, name: 'Aubergine 🍆' },
+  { id: 789, name: 'Carrot 🥕 ' },
+  { id: 321, name: 'Strawberry 🍓' },
+  { id: 654, name: 'Peach 🍑' },
+])
+
+// Second array
+const array2 = reactive([
+  { id: 9874545, name: 'Dog 🐶' },
+  { id: 6590, name: 'Cat 🐱' },
+  { id: 322345, name: 'Whale 🐳' },
+  { id: 785659, name: 'Horse 🐴' },
+  { id: 246766, name: 'Bear 🧸' },
+])
+
+const { lists, onDragEnd, onDragStart } = useDragster({
+  items: [array1, array2],
+  dropZoneClass: 'dragster-dropzone',
+  itemClass: 'dragster',
+  animationDuration: 200,
+})
+</script>
+
+<style>
+.fade-move,
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* Make sure leaving animations have no transition so they don't stay visible */
+.fade-leave-active {
+  transition: 0s;
+  opacity: 0;
+  position: absolute;
+}
+.dragster {
+  cursor: grab;
+}
+</style>
+```
