@@ -50,7 +50,7 @@
           class="w-full rounded-lg bg-gradient-to-r from-primary via-success to-accent p-[2px]"
         >
           <div
-            class="transition-all font-mono relative text-sm bg-base-300 text-base-content text-left w-[380px] px-6 py-3 rounded-[.4rem]"
+            class="transition-all font-mono relative text-sm bg-base-300 text-base-content text-left lg:w-[380px] px-6 py-3 rounded-[.4rem]"
             bind:this={command}
           >
             {#if copied}
